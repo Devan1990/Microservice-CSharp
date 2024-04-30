@@ -1,0 +1,130 @@
+
+syntax = "proto3";
+
+option csharp_namespace = "SurveyManagement.WorkerService.Grpc";
+
+service RoleProtoService {
+
+	rpc GetRoles (GetRoleRequest) returns (RoleModel);
+	rpc IsRoleExists (GetRoleRequest) returns (IsRoleExistsValue);
+	rpc GetRolesList (GetRolebyIDRequest) returns (GetRolebyIDModel);
+	rpc GetUsersAssesseeList (GetUserbyIDRequest) returns (GetUserbyIDModel);
+	rpc GetUserSurveyLst (GetUserSurveyReq) returns (GetUserbyIDModel);
+	rpc GetUserByRoleIdLst (GetUserByRoleIdReq) returns (GetUserByRoleIdModel);
+	rpc GetRoleMappingLst (GetRoleMappingReq) returns (GetRoleMappingList);
+}
+
+message GetRoleRequest {
+	int64 RoleId = 1;
+	string RoleName= 2;
+}
+
+message RoleModel {
+	repeated RoleDetails RoleDetails = 1;
+	
+}
+message RoleDetails {
+	int64 Id = 1;
+	string RoleId = 2;
+	string RoleName = 3;
+}
+
+message IsRoleExistsValue{
+	bool Exists = 1;
+}
+
+message GetRolebyIDRequest {
+	
+	int64 RoleId = 1;
+	string RoleName= 3;
+}
+
+message GetRolebyIDModel {
+	int64 Id = 1;
+	string RoleId = 2;
+	string RoleName = 3;
+	
+}
+message GetUserbyIDRequest {
+	
+	int64 UserId = 1;
+	string FirstName = 2;
+	string LastName = 3;
+	
+}
+message GetUserbyIDModel {
+  //int64 Id = 1;
+  //int64 Id = 1;
+  repeated GetSurveysUserListResponse SurveyUserlst = 1;
+  
+}
+
+
+message GetSurveysUserListResponse {
+	int64 usersurveyid = 1;
+	int64 Id = 2;
+	string UserId = 3;
+	string EmployeeName =4;
+	string RoleName =5; 
+	int64 BenchMarkId = 6;
+	string BenchMark = 7;
+	string RoleId = 8;
+	int64 RoleTId = 9;
+	CompetenciesMapList CompetenciesMapList = 10;
+}
+
+message GetUserSurveyReq{
+	repeated GetUserSurveysLstReq AssessmentID = 1;
+}
+
+message GetUserSurveysLstReq {
+	int64 Id=1;
+}
+
+message CompetenciesMapList {
+	repeated CompetenciesMap CompetenciesMap = 1;
+}
+message CompetenciesMap{
+	  int64 CompetencyGroupId= 1;
+      int64 CompetencyId = 2;
+      bool IsSelected= 3;
+      int64 ExpectedLevelId = 4;
+}
+
+message GetUserByRoleIdModel{
+	repeated GetUserIDData userrolesdetails = 1;
+}
+
+message GetUserIDData {
+	int64 Id = 1;
+	int64 RoleId = 2;
+}
+message GetUserByRoleIdReq {
+	int64 RoleId = 1;
+}
+
+
+message GetRoleMappingReq {
+	int64 Id = 1;
+}
+
+message GetRoleMappingList{
+	repeated GetRoleMappingData RoleMappingData=1;
+}
+
+message GetRoleMappingData {
+	int64 Id = 1;
+	int64 RoleId = 2;
+    GetassessorRole assessorRole=3;
+}
+
+message GetassessorRole {
+	repeated GetAssessorData assessorRole=1;
+}
+
+message GetAssessorData {
+	int64 Id = 1;
+	bool Mandatory = 2;
+	int64 RoleId = 3;
+	int64 roleMappingId = 4;
+}

@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+option csharp_namespace = "SurveyManagement.Grpc";
+
+
+// The SurveyManagementProtoService service definition.
+service SurveyManagementProtoService {
+  // Request Sends a SurveyManagementProtoService
+  rpc GetSurveylistByCurrentFinancialYear (GetSurveyRequest) returns (GetSurveyRes);
+  rpc GetSurveylistBy (GetSurveyListRequest) returns (GetSurveyListRes);
+}
+
+// The request message containing the user's name.
+message GetSurveyRequest {
+  string CFY= 1;
+}
+
+// The response message containing the greetings.
+message GetSurveyRes {
+  //int64 Id = 1;
+  //int64 Id = 1;
+  repeated SuveryRoleValue Surveylst = 1;
+  
+}
+message SuveryRoleValue {
+	int64 SurveyId = 1;
+	int64 RoleId = 2;
+    
+}
+
+message GetSurveyListRequest {
+  string SurveyName= 1;
+}
+message GetSurveyListRes {
+  //int64 Id = 1;
+  //int64 Id = 1;
+  repeated GetSurveyListResponse Surveylst = 1;
+  
+}
+message GetSurveyListResponse {
+	int64 Id = 1;
+	string SurveyId = 2;
+    
+}

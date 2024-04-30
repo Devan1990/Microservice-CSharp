@@ -1,0 +1,63 @@
+{
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:7139/;http://localhost:5139"
+  },
+  "Routes": [
+    //SurveyManagement API
+    {
+      "DownstreamPathTemplate": "/api/v1/SurveyManagement/GetSurveys",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7001
+        }
+      ],
+      "UpstreamPathTemplate": "/SurveyManagement/GetSurveys",
+      "UpstreamHttpMethod": [ "GET" ],
+     // "FileCacheOptions": { "TtlSeconds": 30 }
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/SurveyManagement/GetSurvey/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7001
+        }
+      ],
+      "UpstreamPathTemplate": "/SurveyManagement/{id}",
+      "UpstreamHttpMethod": [ "GET", "DELETE" ],
+     // "FileCacheOptions": { "TtlSeconds": 30 }
+    },
+
+    //UserManagement APi
+    {
+      "DownstreamPathTemplate": "/api/v1/UserManagement/GetUsers",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6001
+        }
+      ],
+      "UpstreamPathTemplate": "/UserManagement/GetUsers",
+      "UpstreamHttpMethod": [ "GET" ],
+    //  "FileCacheOptions": { "TtlSeconds": 30 }
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/UserManagement/GetUser/{id}", //
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6001
+        }
+      ],
+      "UpstreamPathTemplate": "/UserManagement/GetUser/{id}",
+      "UpstreamHttpMethod": [ "GET", "DELETE" ],
+     // "FileCacheOptions": { "TtlSeconds": 30 }
+    }
+  ]
+
+}

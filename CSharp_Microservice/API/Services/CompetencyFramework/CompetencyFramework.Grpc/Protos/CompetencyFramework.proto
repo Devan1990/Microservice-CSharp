@@ -1,0 +1,70 @@
+
+syntax = "proto3";
+
+option csharp_namespace = "CompetencyFramework.Grpc.Protos";
+
+// The greeting service definition.
+service CompetencyFrameworkProtoService {
+	rpc IsCompetencyExists (GetCompetencyRequest) returns (IsCompetencyExistsValue);
+	rpc IsCompetencyGroupExists (GetCompetencyGroupRequest) returns (IsCompetencyGroupExistsValue);
+	rpc GetCompetencyDetails (GetCompetenciesRequest) returns (GetCompetencyDetailsResponse);
+	
+}
+
+message GetCompetencyRequest {
+	int64 CompetencyId = 1;
+}
+message GetCompetencyGroupRequest {
+	int64 CompetencyGroupId = 1;
+	
+}
+message GetCompetenciesRequest {
+	repeated int64 ids = 1;
+}
+
+message IsCompetencyExistsValue{
+	bool Exists = 1;
+}
+message IsCompetencyGroupExistsValue{
+	bool Exists = 1;
+}
+
+message GetCompetencyDetailsResponse{
+	repeated CompetencyGroupValue CompetencyGroups = 1;
+}
+
+message CompetencyGroupValue {
+	int64 id = 1;
+	string competencyGroupId = 2;
+	string name = 3;
+	string description =4;
+	
+    repeated CompetencyValue Competencies = 5;
+	repeated AttributeValue Attributes = 6;
+	
+}
+
+message CompetencyValue {
+	int64 id = 1;
+	string competencyId = 2;
+	string Name = 3;
+	string description =4;
+	int64 ExpectedLevelID =5;
+    string ExpectedLevelName =6;
+    bool IsSelected = 7;
+
+
+}
+
+message AttributeValue{
+	
+	int64 id = 1;
+	string description = 2;
+	CompetencyLevelValue CompetencyLevel = 3; 
+}
+message CompetencyLevelValue{
+	int64 id =1;
+	string Name = 2;
+	int32 Weightage =3;
+}
+
